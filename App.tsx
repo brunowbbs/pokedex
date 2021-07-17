@@ -1,19 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ThemeProvider } from 'styled-components';
+import AppLoading from 'expo-app-loading';
+import { SafeAreaView } from 'react-native';
+
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_500Medium,
+  Poppins_700Bold
+} from '@expo-google-fonts/poppins';
+
+import theme from './src/global/styles/theme';
+import { Home } from './src/screens';
+import { PokemonsProvider } from './src/hooks/usePokemons';
 
 export default function App() {
+
+  const [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_700Bold
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <ThemeProvider theme={theme}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <PokemonsProvider>
+          <Home />
+        </PokemonsProvider>
+      </SafeAreaView>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
