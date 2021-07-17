@@ -11,8 +11,8 @@ import {
 } from '@expo-google-fonts/poppins';
 
 import theme from './src/global/styles/theme';
-import { Home } from './src/screens';
 import { PokemonsProvider } from './src/hooks/usePokemons';
+import Routes from './src/routes';
 
 export default function App() {
 
@@ -28,11 +28,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <PokemonsProvider>
-          <Home />
-        </PokemonsProvider>
-      </SafeAreaView>
+      <PokemonsProvider>
+        <Routes />
+      </PokemonsProvider>
     </ThemeProvider>
   );
 }

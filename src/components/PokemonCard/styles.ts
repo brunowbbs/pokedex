@@ -1,7 +1,6 @@
 import styled from "styled-components/native";
 import { RectButton } from 'react-native-gesture-handler';
 
-
 interface ContainerProps {
   color: string;
 }
