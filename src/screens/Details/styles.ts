@@ -4,6 +4,9 @@ import { BaseButton } from "react-native-gesture-handler";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import { Animated } from "react-native";
 import { normalize } from '../../utils'
+import { Dimensions } from 'react-native';
+
+const { height } = Dimensions.get('window');
 
 interface HeaderProps {
   color: string;
@@ -31,7 +34,7 @@ export const IconButton = styled(Ionicons).attrs({
 
 export const Header = styled(Animated.View) <HeaderProps>`
   width: 100%;
-/*   background: ${(props) => props.color}; */
+  background: ${(props) => props.color};
   justify-content: center;
   align-items: center;
   padding: ${normalize(20)}px;
@@ -40,7 +43,7 @@ export const Header = styled(Animated.View) <HeaderProps>`
   left: 0;
   right: 0;
   z-index: 10;
-  background: #555,
+
 `;
 
 export const Image = styled(Animated.Image)``;
@@ -75,6 +78,7 @@ export const TextBlack = styled.Text`
 
 export const Content = styled(Animated.ScrollView)`
   padding: ${normalize(20)}px ${normalize(10)}px;
+  flex: 1;
 `;
 
 export const ContentProfile = styled.View`
@@ -117,8 +121,8 @@ export const SectionRow = styled.View`
 `;
 
 export const TextMove = styled.Text`
-  padding: ${normalize(2)}px ${normalize(5)}px;
-  margin: ${normalize(5)}px;
+  padding: 4px 5px;
+  margin: 3px 5px;
   border-width: ${normalize(1)}px;
   border-color: #000;
   border-radius: ${normalize(10)}px;

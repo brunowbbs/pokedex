@@ -80,6 +80,10 @@ export function Details() {
             <SubTitle>{item.weight}</SubTitle>
           </SubcontentProfile>
           <SubcontentProfile>
+            <TextBlack>Base Experience</TextBlack>
+            <SubTitle>{item.base_experience}</SubTitle>
+          </SubcontentProfile>
+          <SubcontentProfile>
             <TextBlack>Height</TextBlack>
             <SubTitle>{item.height}</SubTitle>
           </SubcontentProfile>

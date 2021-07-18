@@ -1,13 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from '@react-navigation/stack';
 import { Details, Home } from '../screens';
 
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { Platform } from 'react-native';
 
-
-/* const Stack = createStackNavigator(); */
 const Stack = createSharedElementStackNavigator();
 
 export default function Routes() {

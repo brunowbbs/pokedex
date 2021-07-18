@@ -28,6 +28,4 @@ async function fechPokemons(page: number, finishLoading: () => void) {
   return Promise.all(promisesFetch);
 }
 
-
-
 export { api, fechPokemons };
