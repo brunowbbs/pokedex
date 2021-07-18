@@ -1,30 +1,31 @@
 import styled from "styled-components/native";
-import { RectButton } from "react-native-gesture-handler";
+import { BaseButton } from "react-native-gesture-handler";
+import { normalize } from '../../utils';
 
 interface ContainerProps {
   color: string;
 }
 
-export const Container = styled(RectButton) <ContainerProps>`
+export const Container = styled(BaseButton) <ContainerProps>`
   justify-content: center;
   align-items: center;
-  margin: 10px;
+  margin: ${normalize(10)}px;
   flex: 1;
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: ${normalize(8)}px;
+  padding: ${normalize(10)}px;
   background: ${(props) => props.color};
 `;
 
 export const PokemonName = styled.Text`
-  font-size: 18px;
+  font-size: ${normalize(18)}px;
   font-family: ${(props) => props.theme.fonts.medium};
   color: #fff;
-  margin-top: 10px;
+  margin-top: ${normalize(10)}px;
 `;
 
 export const PokemonImage = styled.Image`
-  width: 100px;
-  height: 100px;
+  width: ${normalize(100)}px;
+  height: ${normalize(100)}px;
 `;
 
 export const ContainerTypes = styled.View`

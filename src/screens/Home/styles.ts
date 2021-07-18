@@ -1,21 +1,32 @@
-import styled from 'styled-components/native';
-import { FlatList } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import styled from "styled-components/native";
+import { ActivityIndicator, FlatList } from "react-native";
+import { getStatusBarHeight } from "react-native-status-bar-height";
+import { normalize } from '../../utils'
 
+import { DataListPokemonProps } from ".";
 
-import { DataListPokemonProps } from '.';
-
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
-padding-top: ${getStatusBarHeight() + 20}px;
+  padding-top: ${getStatusBarHeight() + normalize(20)}px;
 `;
 
 export const Title = styled.Text`
-padding:0 20px;
-  font-size: 24px;
+  padding: 0 ${normalize(20)}px;
+  font-size: ${normalize(24)}px;
   font-family: ${(props) => props.theme.fonts.bold};
 `;
 
 export const PokemonList = styled(
   FlatList as new () => FlatList<DataListPokemonProps>
-).attrs({})``;
+).attrs({
+  numColumns: 2,
+  onEndReachedThreshold: 0.5
+})``;
+
+
+export const LoadingData = styled(
+  ActivityIndicator as new () => ActivityIndicator
+).attrs({
+  size: 'small',
+  color: '#fafafa'
+})``;

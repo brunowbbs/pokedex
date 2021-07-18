@@ -1,61 +1,80 @@
 import { Ionicons } from "@expo/vector-icons";
 import styled from "styled-components/native";
-import { RectButton } from "react-native-gesture-handler";
+import { BaseButton } from "react-native-gesture-handler";
 import { getStatusBarHeight } from "react-native-status-bar-height";
+import { Animated } from "react-native";
+import { normalize } from '../../utils'
 
 interface HeaderProps {
   color: string;
 }
 
-export const Container = styled.ScrollView``;
+export const Container = styled.View`
+  flex: 1;
+`;
 
-export const GoBackButton = styled(RectButton)`
+export const GoBackButton = styled(BaseButton)`
   justify-content: center;
   align-items: center;
   position: absolute;
-  border-radius: 25px;
+  border-radius: ${normalize(25)}px;
   left: 10px;
-  top: ${getStatusBarHeight()}px;
+  top: ${getStatusBarHeight() + 15}px;
   z-index: 99;
 `;
 
-export const IconButton = styled(Ionicons)``;
+export const IconButton = styled(Ionicons).attrs({
+  name: 'ios-arrow-back-outline',
+  color: '#FFF',
+  size: 35
+})``;
 
-export const Header = styled.View<HeaderProps>`
+export const Header = styled(Animated.View) <HeaderProps>`
   width: 100%;
-  background: ${(props) => props.color};
+/*   background: ${(props) => props.color}; */
   justify-content: center;
   align-items: center;
-  height: 400px;
-  padding: 20px;
-  padding-top: ${getStatusBarHeight() + 50}px;
+  padding: ${normalize(20)}px;
+  padding-top: ${getStatusBarHeight()}px;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: #555,
 `;
 
-export const Circle = styled.View`
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 50px;
-  position: absolute;
-  top: 15px;
-`;
+export const Image = styled(Animated.Image)``;
 
-export const PokemonName = styled.Text`
-  font-size: 24px;
+export const Title = styled.Text`
+  font-size: ${normalize(24)}px;
   font-family: ${(props) => props.theme.fonts.medium};
   color: #fff;
-  margin-top: 10px;
+  margin-top: ${normalize(10)}px;
 `;
 
-export const PokemonType = styled.Text`
+export const SubTitle = styled.Text`
+  font-size: ${normalize(20)}px;;
+  font-family: ${(props) => props.theme.fonts.medium};
+  color: #2a2a2a;
+  margin-top: ${normalize(10)}px;
+`;
+
+export const TextWhite = styled.Text`
   font-family: ${(props) => props.theme.fonts.regular};
-   color: #fff;
-  font-size: 15px;
-  padding: 0 5px;
+  color: #fff;
+  font-size: ${normalize(15)}px;
+  padding: 0 ${normalize(5)}px;
 `;
 
-export const Content = styled.View`
-  padding: 20px 10px ;
+export const TextBlack = styled.Text`
+  font-family: ${(props) => props.theme.fonts.regular};
+  color: #2a2a2a;
+  font-size: ${normalize(15)}px;
+  padding: 0 ${normalize(5)}px;
+`;
+
+export const Content = styled(Animated.ScrollView)`
+  padding: ${normalize(20)}px ${normalize(10)}px;
 `;
 
 export const ContentProfile = styled.View`
@@ -68,43 +87,39 @@ export const SubcontentProfile = styled.View`
 `;
 
 export const TitleProfile = styled.Text`
-  font-size: 18px;
+  font-size: ${normalize(18)}px;
   font-family: ${(props) => props.theme.fonts.medium};
-  margin: 20px 0 10px 0;
+  margin: ${normalize(20)}px 0 ${normalize(10)}px 0;
 `;
 
 export const Border = styled.View`
   width: 100%;
-  height: 0.85px;
+  height: ${normalize(0.85)}px;
   background: #3a3a3a;
-  margin-top: 5px;
-  margin-bottom: -5px;
+  margin-top: ${normalize(5)}px;
+  margin-bottom: ${normalize(-5)}px;
 `;
 
 export const TextProfile = styled.Text`
-  font-size: 14px;
-  margin-top: 10px;
+  font-size: ${normalize(14)}px;
+  margin-top: ${normalize(10)}px;
   font-family: ${(props) => props.theme.fonts.regular};
   color: #3a3a3a;
 `;
 
-export const BaseState = styled.View`
-  margin-top:20px;
+export const SectionColumn = styled.View`
+  margin-top: ${normalize(20)}px;
 `;
 
-export const ContainerTypes = styled.View`
+export const SectionRow = styled.View`
   flex-direction: row;
   flex-wrap: wrap;
 `;
 
 export const TextMove = styled.Text`
-  padding: 2px 5px; margin: 5px;
-  border-width: 1px;
+  padding: ${normalize(2)}px ${normalize(5)}px;
+  margin: ${normalize(5)}px;
+  border-width: ${normalize(1)}px;
   border-color: #000;
-  border-radius: 10px;
-`;
-
-export const ImageSprite = styled.Image`
-  width: 100px;
-  height: 100px;
+  border-radius: ${normalize(10)}px;
 `;

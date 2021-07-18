@@ -4,23 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Details, Home } from '../screens';
 
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
+import { Platform } from 'react-native';
 
 
 /* const Stack = createStackNavigator(); */
 const Stack = createSharedElementStackNavigator();
-
-export const iosTransitionSpec = {
-  animation: "spring",
-  config: {
-    stiffness: 1000,
-    damping: 500,
-    mass: 3,
-    overshootClamping: true,
-    restDisplacementThreshold: 10,
-    restSpeedThreshold: 10,
-  },
-};
-
 
 export default function Routes() {
   return (
@@ -46,6 +34,9 @@ export default function Routes() {
 
           sharedElementsConfig={(route, otherRoute, showing) => {
             const { item } = route.params;
+
+            if (Platform.OS === 'android') return [];
+
             return [
               {
                 id: `item.${item.id}.photo`

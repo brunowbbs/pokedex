@@ -1,23 +1,30 @@
-import { useRoute } from '@react-navigation/native';
-import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { SharedElement } from 'react-navigation-shared-element';
-import { Container, GoBackButton, IconButton, PokemonName, PokemonType, Header, Content, ContentProfile, SubcontentProfile, TitleProfile, TextProfile, Border, BaseState, ContainerTypes, TextMove, ImageSprite } from './styles';
+import React, { useRef } from 'react';
+import { Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
+import { SharedElement } from 'react-navigation-shared-element';
+
+import { IndicatorBar, Sprites } from '../../components';
 import { generatedColor } from '../../utils';
 
-import { IndicatorBar } from '../../components';
-import { Sprites } from '../../components/Sprites';
-
-
-function generateSprites(sprites: any) {
-
-  Object.keys(sprites).forEach((key) => {
-    console.log(key); //column01...
-    console.log(sprites[key]); //Coluna 01...
-  });
-}
-
+import {
+  Container,
+  GoBackButton,
+  IconButton,
+  Title,
+  SubTitle,
+  TextWhite,
+  TextBlack,
+  Header,
+  Content,
+  ContentProfile,
+  SubcontentProfile,
+  TitleProfile,
+  TextMove,
+  Image,
+  SectionColumn,
+  SectionRow
+} from './styles';
 
 export function Details() {
 
@@ -25,65 +32,87 @@ export function Details() {
   const { item }: any = route.params;
   const navigation = useNavigation();
 
+  const scrollPosition = useRef(new Animated.Value(0)).current;
+
+  const imageHeight = scrollPosition.interpolate({
+    inputRange: [0, 150],
+    outputRange: [200, 0],
+    extrapolateRight: 'clamp',
+  });
+
   return (
     <Container>
       <GoBackButton onPress={() => navigation.goBack()}>
-        <IconButton name="ios-arrow-back-outline" size={32} color="#000" />
+        <IconButton />
       </GoBackButton>
       <Header color={generatedColor(item.types[0].type.name)}>
         <SharedElement id={`item.${item.id}.photo`}>
-          <Image source={{ uri: item.sprites.other['official-artwork'].front_default }} style={{ width: 250, height: 250 }} />
+          <Image
+            style={{
+              height: imageHeight,
+              width: imageHeight,
+              borderRadius: imageHeight,
+            }}
+            source={{ uri: item.sprites.other['official-artwork'].front_default }}
+          />
         </SharedElement>
+
         <SharedElement id={`item.${item.id}.name`}>
-          <PokemonName>{item.name}</PokemonName>
+          <Title>{item.name}</Title>
         </SharedElement>
-        <ContainerTypes>
+
+        <SectionRow>
           {
-            item.types.map((item: any) => <PokemonType key={item.type.name} >{item.type.name}</PokemonType>)
+            item.types.map((item: any) => <TextWhite key={item.type.name} >{item.type.name}</TextWhite>)
           }
-        </ContainerTypes>
+        </SectionRow>
       </Header>
-      <Content>
+      <Content
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollPosition } } }],
+          { useNativeDriver: false },
+        )}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <ContentProfile>
           <SubcontentProfile>
-            <TitleProfile>Weight</TitleProfile>
-            <Border />
-            <TextProfile>{item.weight}</TextProfile>
+            <TextBlack>Weight</TextBlack>
+            <SubTitle>{item.weight}</SubTitle>
           </SubcontentProfile>
           <SubcontentProfile>
-            <TitleProfile>Height</TitleProfile>
-            <Border />
-            <TextProfile>{item.height}</TextProfile>
+            <TextBlack>Height</TextBlack>
+            <SubTitle>{item.height}</SubTitle>
           </SubcontentProfile>
         </ContentProfile>
 
-        <BaseState>
-          <TitleProfile>Base stats</TitleProfile>
+        <SectionColumn>
+          <SubTitle>Base stats</SubTitle>
           {
             item.stats.map((item: any) => <IndicatorBar key={item.stat.name} name={item.stat.name} stat={item.base_stat} />)
           }
-        </BaseState>
+        </SectionColumn>
+
 
         <TitleProfile>Moves</TitleProfile>
-        <ContainerTypes>
+        <SectionRow>
           {
             item.moves.map((item: any) => <TextMove key={item.move.name} >{item.move.name}</TextMove>)
           }
-        </ContainerTypes>
+        </SectionRow>
 
         <TitleProfile>Abilities</TitleProfile>
-        <ContainerTypes>
+        <SectionRow>
           {
             item.abilities.map((item: any) => <TextMove key={item.ability.name} >{item.ability.name}</TextMove>)
           }
-        </ContainerTypes>
+        </SectionRow>
 
         <TitleProfile>Sprites</TitleProfile>
-        <ContainerTypes>
+        <SectionRow>
           <Sprites item={item.sprites} />
-        </ContainerTypes>
+        </SectionRow>
 
       </Content>
-    </Container>
+    </Container >
   )
 }

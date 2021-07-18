@@ -1,7 +1,6 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { View, Text, Animated, Dimensions } from 'react-native';
-import { useTheme } from 'styled-components/native'
+import React, { useRef, useEffect } from 'react';
+import { Dimensions, Animated } from 'react-native';
+import { Container, Text, AnimatedView } from './styles';
 
 interface PropsIndicatorBar {
   name: string;
@@ -19,7 +18,7 @@ function getWidthBar(stat: number) {
 
 export function IndicatorBar({ name, stat }: PropsIndicatorBar) {
 
-  const barWidth = React.useRef(new Animated.Value(0)).current;
+  const barWidth = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.spring(barWidth, {
@@ -33,19 +32,15 @@ export function IndicatorBar({ name, stat }: PropsIndicatorBar) {
 
   return (
     <>
-      <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between' }}>
-        <Text style={{ fontSize: 16 }}>{name}</Text>
-        <Text style={{ fontSize: 16 }}>{stat}</Text>
-      </View>
+      <Container>
+        <Text>{name}</Text>
+        <Text>{stat}</Text>
+      </Container>
 
-      <Animated.View
+      <AnimatedView
         style={{
           maxWidth: width,
-          marginTop: 10,
-          height: 10,
-          width: barWidth,
-          borderRadius: 7.5,
-          backgroundColor: '#cacaca',
+          width: barWidth
         }}
       />
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import AppLoading from 'expo-app-loading';
-import { SafeAreaView } from 'react-native';
 
 import {
   useFonts,
+  Poppins_300Light,
   Poppins_400Regular,
   Poppins_500Medium,
   Poppins_700Bold
@@ -17,6 +17,7 @@ import Routes from './src/routes';
 export default function App() {
 
   const [fontsLoaded] = useFonts({
+    Poppins_300Light,
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold
