@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton } from "react-native-gesture-handler";
 
 interface ContainerProps {
   color: string;
@@ -8,20 +8,11 @@ interface ContainerProps {
 export const Container = styled(RectButton) <ContainerProps>`
   justify-content: center;
   align-items: center;
-  margin: 10px; 
-  flex:1;
+  margin: 10px;
+  flex: 1;
   border-radius: 8px;
   padding: 10px;
   background: ${(props) => props.color};
-`;
-
-export const Circle = styled.View`
-  width: 100px;
-  height: 100px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50px;
-  position: absolute;
-  top:15px
 `;
 
 export const PokemonName = styled.Text`
@@ -32,13 +23,16 @@ export const PokemonName = styled.Text`
 `;
 
 export const PokemonImage = styled.Image`
-  width: 120px;
-  height: 120px;
-  
+  width: 100px;
+  height: 100px;
+`;
+
+export const ContainerTypes = styled.View`
+  flex-direction: row;
 `;
 
 export const PokemonType = styled.Text`
-  font-family: ${(props) => props.theme.fonts.regular};
   color: #fff;
   font-size: 12px;
+  padding: 0 5px;
 `;

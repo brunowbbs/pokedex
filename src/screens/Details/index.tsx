@@ -2,11 +2,22 @@ import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
-import { Container, GoBackButton, IconButton, PokemonName, PokemonType, Header, Content, ContentProfile, SubcontentProfile, TitleProfile, TextProfile, Border, BaseState } from './styles';
+import { Container, GoBackButton, IconButton, PokemonName, PokemonType, Header, Content, ContentProfile, SubcontentProfile, TitleProfile, TextProfile, Border, BaseState, ContainerTypes, TextMove, ImageSprite } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import { generatedColor } from '../../utils';
 
 import { IndicatorBar } from '../../components';
+import { Sprites } from '../../components/Sprites';
+
+
+function generateSprites(sprites: any) {
+
+  Object.keys(sprites).forEach((key) => {
+    console.log(key); //column01...
+    console.log(sprites[key]); //Coluna 01...
+  });
+}
+
 
 export function Details() {
 
@@ -26,7 +37,11 @@ export function Details() {
         <SharedElement id={`item.${item.id}.name`}>
           <PokemonName>{item.name}</PokemonName>
         </SharedElement>
-        <PokemonType>{item.types[0].type.name}</PokemonType>
+        <ContainerTypes>
+          {
+            item.types.map((item: any) => <PokemonType key={item.type.name} >{item.type.name}</PokemonType>)
+          }
+        </ContainerTypes>
       </Header>
       <Content>
         <ContentProfile>
@@ -44,13 +59,30 @@ export function Details() {
 
         <BaseState>
           <TitleProfile>Base stats</TitleProfile>
-          <IndicatorBar name={item.stats[0].stat.name} stat={item.stats[0].base_stat} color={generatedColor(item.types[0].type.name)} />
-          <IndicatorBar name={item.stats[1].stat.name} stat={item.stats[1].base_stat} color={generatedColor(item.types[0].type.name)} />
-          <IndicatorBar name={item.stats[2].stat.name} stat={item.stats[2].base_stat} color={generatedColor(item.types[0].type.name)} />
-          <IndicatorBar name={item.stats[3].stat.name} stat={item.stats[3].base_stat} color={generatedColor(item.types[0].type.name)} />
-          <IndicatorBar name={item.stats[4].stat.name} stat={item.stats[4].base_stat} color={generatedColor(item.types[0].type.name)} />
-          <IndicatorBar name={item.stats[5].stat.name} stat={item.stats[5].base_stat} color={generatedColor(item.types[0].type.name)} />
+          {
+            item.stats.map((item: any) => <IndicatorBar key={item.stat.name} name={item.stat.name} stat={item.base_stat} />)
+          }
         </BaseState>
+
+        <TitleProfile>Moves</TitleProfile>
+        <ContainerTypes>
+          {
+            item.moves.map((item: any) => <TextMove key={item.move.name} >{item.move.name}</TextMove>)
+          }
+        </ContainerTypes>
+
+        <TitleProfile>Abilities</TitleProfile>
+        <ContainerTypes>
+          {
+            item.abilities.map((item: any) => <TextMove key={item.ability.name} >{item.ability.name}</TextMove>)
+          }
+        </ContainerTypes>
+
+        <TitleProfile>Sprites</TitleProfile>
+        <ContainerTypes>
+          <Sprites item={item.sprites} />
+        </ContainerTypes>
+
       </Content>
     </Container>
   )

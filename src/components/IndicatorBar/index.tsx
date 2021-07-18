@@ -6,16 +6,13 @@ import { useTheme } from 'styled-components/native'
 interface PropsIndicatorBar {
   name: string;
   stat: string;
-  color: string;
 }
 
 const { width } = Dimensions.get('screen');
 
 
 function getWidthBar(stat: number) {
-
   stat > 100 ? stat = 100 : stat;
-
   return (stat * width * 0.95 / 100);
 }
 
@@ -36,16 +33,16 @@ export function IndicatorBar({ name, stat }: PropsIndicatorBar) {
 
   return (
     <>
-      <View style={{ flexDirection: 'row', marginTop: 20, justifyContent: 'space-between' }}>
-        <Text style={{ fontSize: 18 }}>{name}</Text>
-        <Text style={{ fontSize: 18 }}>{stat}</Text>
+      <View style={{ flexDirection: 'row', marginTop: 10, justifyContent: 'space-between' }}>
+        <Text style={{ fontSize: 16 }}>{name}</Text>
+        <Text style={{ fontSize: 16 }}>{stat}</Text>
       </View>
 
       <Animated.View
         style={{
           maxWidth: width,
           marginTop: 10,
-          height: 15,
+          height: 10,
           width: barWidth,
           borderRadius: 7.5,
           backgroundColor: '#cacaca',

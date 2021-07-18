@@ -7,7 +7,7 @@ interface HeaderProps {
   color: string;
 }
 
-export const Container = styled.View``;
+export const Container = styled.ScrollView``;
 
 export const GoBackButton = styled(RectButton)`
   justify-content: center;
@@ -49,11 +49,12 @@ export const PokemonName = styled.Text`
 
 export const PokemonType = styled.Text`
   font-family: ${(props) => props.theme.fonts.regular};
-  color: #fff;
+   color: #fff;
   font-size: 15px;
+  padding: 0 5px;
 `;
 
-export const Content = styled.ScrollView`
+export const Content = styled.View`
   padding: 20px 10px ;
 `;
 
@@ -67,8 +68,9 @@ export const SubcontentProfile = styled.View`
 `;
 
 export const TitleProfile = styled.Text`
-font-size: 22px;
+  font-size: 18px;
   font-family: ${(props) => props.theme.fonts.medium};
+  margin: 20px 0 10px 0;
 `;
 
 export const Border = styled.View`
@@ -80,12 +82,29 @@ export const Border = styled.View`
 `;
 
 export const TextProfile = styled.Text`
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 10px;
   font-family: ${(props) => props.theme.fonts.regular};
   color: #3a3a3a;
 `;
 
 export const BaseState = styled.View`
-  margin-top:20px
+  margin-top:20px;
+`;
+
+export const ContainerTypes = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+`;
+
+export const TextMove = styled.Text`
+  padding: 2px 5px; margin: 5px;
+  border-width: 1px;
+  border-color: #000;
+  border-radius: 10px;
+`;
+
+export const ImageSprite = styled.Image`
+  width: 100px;
+  height: 100px;
 `;
