@@ -51,7 +51,7 @@ Para a construção da aplicação, foram utilizadas as seguintes tecnologias:
   $ yarn
 ```
 
-## :iphone: Iniciando mobile
+## :iphone: Executando
 
 ```bash
   # Iniciar a aplicação:
