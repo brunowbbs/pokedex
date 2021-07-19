@@ -7,7 +7,7 @@
   <a href="#hammer-iniciando-mobile">Tecnologias</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#books-requisitos">Requisitos</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#rocket-começando">Começando</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-começando">Começando</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 <h1 align="center">
