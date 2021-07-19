@@ -32,7 +32,7 @@ Para a construção da aplicação, foram utilizadas as seguintes tecnologias:
 - [Styled Components](https://styled-components.com/)
 - [PokéAPI](https://pokeapi.co/)
 
-## :books: Requisitos
+## :rocket: Requisitos
 
 - Ter [**Git**](https://git-scm.com/) para clonar o projeto.
 - Ter [**Node.js**](https://nodejs.org/en/) instalado.
