@@ -37,7 +37,7 @@ export function Details() {
   const imageHeight = scrollPosition.interpolate({
     inputRange: [0, 150],
     outputRange: [200, 0],
-    extrapolateRight: 'clamp',
+    extrapolateRight: "extend"
   });
 
   return (
@@ -45,7 +45,8 @@ export function Details() {
       <GoBackButton onPress={() => navigation.goBack()}>
         <IconButton />
       </GoBackButton>
-      <Header color={generatedColor(item.types[0].type.name)}>
+      <Header
+        color={generatedColor(item.types[0].type.name)}>
         <SharedElement id={`item.${item.id}.photo`}>
           <Image
             style={{

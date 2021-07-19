@@ -4,9 +4,6 @@ import { BaseButton } from "react-native-gesture-handler";
 import { getStatusBarHeight } from "react-native-status-bar-height";
 import { Animated } from "react-native";
 import { normalize } from '../../utils'
-import { Dimensions } from 'react-native';
-
-const { height } = Dimensions.get('window');
 
 interface HeaderProps {
   color: string;
@@ -121,8 +118,10 @@ export const SectionRow = styled.View`
 `;
 
 export const TextMove = styled.Text`
-  padding: 4px 5px;
-  margin: 3px 5px;
+  height: ${normalize(22)}px;
+  font-size: ${normalize(12)}px;
+  padding:${normalize(2)}px ${normalize(7)}px;
+  margin:${normalize(2)}px;
   border-width: ${normalize(1)}px;
   border-color: #000;
   border-radius: ${normalize(10)}px;
